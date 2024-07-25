@@ -5,15 +5,15 @@ import colors from '../constants/Colors';
 const NavBar = ({ scrollViewRef }) => {
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const { height } = Dimensions.get('window');
+
 
   const scrollToSection = (section) => {
     if (scrollViewRef && scrollViewRef.current) {
       let yOffset = 0;
       if (section === 'features') {
-        yOffset = height * 1; 
+        yOffset = 550; 
       } else if (section === 'installation') {
-        yOffset = height * 1.9; 
+        yOffset = 1050; 
       }
       scrollViewRef.current.scrollTo({ y: yOffset, animated: true });
     }
