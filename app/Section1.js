@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '0%',
+    marginTop: '1%',
   },
   mockups: {
     marginRight: '-10%',
   },
   mockupImage: {
-    transform: [{ scale: "50%" }],
+    transform: [{ scale: "55%" }],
   },
   info: {
     marginLeft: '-5%', 
