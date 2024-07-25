@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View, ActivityIndicator, Platform, Text } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View, ActivityIndicator, Text, Dimensions } from 'react-native';
 import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
@@ -35,7 +35,6 @@ const Index = () => {
   }, [loaded, error]);
 
   useEffect(() => {
-    // Check if the device is mobile based on the user agent
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     if (/android|ipad|iphone|mobile/i.test(userAgent)) {
       setIsDesktop(false);
@@ -53,6 +52,7 @@ const Index = () => {
   if (!isDesktop) {
     return (
       <View style={styles.container}>
+        <Text style={{ fontWeight: "bold" }}>Sorry!</Text>
         <Text>This website is only viewable on desktop or laptop devices.</Text>
       </View>
     );
@@ -62,9 +62,15 @@ const Index = () => {
     <ImageBackground source={require('../assets/images/bg.jpg')} style={styles.container}>
       <NavBar scrollViewRef={scrollViewRef} />
       <ScrollView ref={scrollViewRef} contentContainerStyle={styles.scrollContainer}>
-        <Section1 />
-        <Section2 />
-        <Section3 />
+        <View style={styles.sectionContainer}>
+          <Section1 />
+        </View>
+        <View style={styles.sectionContainer}>
+          <Section2 />
+        </View>
+        <View style={styles.sectionContainer}>
+          <Section3 />
+        </View>
       </ScrollView>
     </ImageBackground>
   );
@@ -72,21 +78,25 @@ const Index = () => {
 
 export default Index;
 
+const { height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  sectionContainer: {
+    height: height,
+    width: '100%',
   },
 });

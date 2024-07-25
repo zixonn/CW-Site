@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     width:"100%",
     justifyContent:"center",
     alignItems:"center",
-    marginTop:"3%"
   },
   box:{
     backgroundColor:colors.tangerine,
