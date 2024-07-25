@@ -1,24 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, Animated, Dimensions, Platform } from 'react-native';
 import colors from '../constants/Colors';
+import MyText from './MyText';
 
-const NavBar = ({ scrollViewRef }) => {
+const NavBar = () => {
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const {height} = Dimensions.get("window")
-
-  const scrollToSection = (section) => {
-    if (scrollViewRef && scrollViewRef.current) {
-      let yOffset = 0;
-      if (section === 'features') {
-        yOffset = height-75; 
-      } else if (section === 'installation') {
-        yOffset = (height*2)-20; 
-      }
-      scrollViewRef.current.scrollTo({ y: yOffset, animated: true });
-    }
-  };
-
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 0.85,
@@ -29,15 +16,9 @@ const NavBar = ({ scrollViewRef }) => {
 
   return (
     <Animated.View style={[styles.con, { opacity: fadeAnim }]}>
-      <Text onPress={() => scrollToSection('landing')} style={styles.text}>
-        Landing
-      </Text>
-      <Text onPress={() => scrollToSection('features')} style={styles.text}>
-        Features
-      </Text>
-      <Text onPress={() => scrollToSection('installation')} style={styles.text}>
-        Installation
-      </Text>
+      <MyText fontSize={"100%"} color={"white"} fontFamily={"Rubik-Medium"}>Now Available for
+         <MyText color={"tangerine"}> Android</MyText> Devices!
+        </MyText>
     </Animated.View>
   );
 };
@@ -58,10 +39,5 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     zIndex: 1,
     alignSelf: 'center',
-  },
-  text: {
-    fontFamily: 'Rubik-SemiBold',
-    color: 'white',
-    fontSize: "100%", 
   },
 });

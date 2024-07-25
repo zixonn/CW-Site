@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     marginRight: '-10%',
   },
   mockupImage: {
-    transform: [{ scale: 0.5 }],
+    transform: [{ scale: "50%" }],
   },
   info: {
     marginLeft: '-5%', 
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     marginRight:"10%"
   },
   logoImage: {
-    transform: [{ scale: 0.5 }],
+    transform: [{ scale: "50%" }],
     margin: '-15%',
   },
   storesImage: {
-    transform: [{ scale: 0.5 }],
+    transform: [{ scale: "50%" }],
   },
 });
 
