@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImageBackground, ScrollView, StyleSheet, View, ActivityIndicator } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View, ActivityIndicator, Platform, Text } from 'react-native';
 import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
 import NavBar from '../components/NavBar'; 
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
-import Footer from '@/components/Footer';
 
 SplashScreen.preventAutoHideAsync();
 
 const Index = () => {
   const scrollViewRef = useRef(null);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   const [loaded, error] = useFonts({
     'Rubik-Regular': require('../assets/fonts/Rubik-Regular.ttf'),
@@ -26,15 +26,21 @@ const Index = () => {
       await SplashScreen.hideAsync();
       setAssetsLoaded(true);
     };
-
     if (loaded || error) {
       loadAssets();
     }
-
     return () => {
       setAssetsLoaded(false);
     };
   }, [loaded, error]);
+
+  useEffect(() => {
+    // Check if the device is mobile based on the user agent
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android|ipad|iphone|mobile/i.test(userAgent)) {
+      setIsDesktop(false);
+    }
+  }, []);
 
   if (!assetsLoaded) {
     return (
@@ -44,9 +50,17 @@ const Index = () => {
     );
   }
 
+  if (!isDesktop) {
+    return (
+      <View style={styles.container}>
+        <Text>This website is only viewable on desktop or laptop devices.</Text>
+      </View>
+    );
+  }
+
   return (
     <ImageBackground source={require('../assets/images/bg.jpg')} style={styles.container}>
-      <NavBar scrollViewRef={scrollViewRef} /> 
+      <NavBar scrollViewRef={scrollViewRef} />
       <ScrollView ref={scrollViewRef} contentContainerStyle={styles.scrollContainer}>
         <Section1 />
         <Section2 />

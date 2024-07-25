@@ -1,22 +1,34 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, View, Text, Animated, Dimensions, Platform } from 'react-native';
 import colors from '../constants/Colors';
 
 const NavBar = ({ scrollViewRef }) => {
+
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { height } = Dimensions.get('window');
+
   const scrollToSection = (section) => {
     if (scrollViewRef && scrollViewRef.current) {
       let yOffset = 0;
       if (section === 'features') {
-        yOffset = 500; 
+        yOffset = height * 1; 
       } else if (section === 'installation') {
-        yOffset = 900; 
+        yOffset = height * 1.9; 
       }
       scrollViewRef.current.scrollTo({ y: yOffset, animated: true });
     }
   };
 
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 0.85,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
   return (
-    <View style={styles.con}>
+    <Animated.View style={[styles.con, { opacity: fadeAnim }]}>
       <Text onPress={() => scrollToSection('landing')} style={styles.text}>
         Landing
       </Text>
@@ -26,7 +38,7 @@ const NavBar = ({ scrollViewRef }) => {
       <Text onPress={() => scrollToSection('installation')} style={styles.text}>
         Installation
       </Text>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -34,7 +46,7 @@ export default NavBar;
 
 const styles = StyleSheet.create({
   con: {
-    position: 'absolute', 
+    position: 'absolute',
     top: 0,
     width: '70%',
     paddingVertical: '1.5%',
@@ -45,10 +57,11 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     zIndex: 1,
-    alignSelf:"center"
+    alignSelf: 'center',
   },
   text: {
     fontFamily: 'Rubik-SemiBold',
     color: 'white',
+    fontSize: "100%", 
   },
 });
