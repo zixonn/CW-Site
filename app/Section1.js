@@ -36,7 +36,7 @@ const Section1 = () => {
           source={require('../assets/images/logo.png')}
           style={styles.logoImage}
         />
-        <MyText fontFamily={'Rubik-Medium'} fontSize={"215%"}>
+        <MyText fontFamily={'Rubik-Medium'} fontSize={"210%"}>
           Introducing
           <MyText fontFamily={'Rubik-SemiBold'} color={'tangerine'}>
             {' '}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   logoImage: {
     transform: [{ scale: 1 }],
-    margin: '-15%',
+    margin: '-20%',
   },
   storesImage: {
     transform: [{ scale: "50%" }],
