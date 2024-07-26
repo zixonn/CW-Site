@@ -37,14 +37,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop:"-5%"
+    marginTop:"-6%"
   },
   row: {
     flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-evenly",
     alignItems: "flex-start",
     width: '100%',
     marginVertical: '3%',
+    marginHorizontal:"-5%",
   }
 });

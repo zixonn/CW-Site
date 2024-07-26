@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginRight:"10%"
   },
   logoImage: {
-    transform: [{ scale: "50%" }],
+    transform: [{ scale: 1 }],
     margin: '-15%',
   },
   storesImage: {
