@@ -19,8 +19,8 @@ const Section3 = () => {
           transform:[{scale:0.75}],margin:"-3%"
         }}/>
       </View>
-      <MyText marginVertical={"2%"} color={"gray"} fontFamily={"Rubik-Regular"} fontSize={20}> 
-        Install the APK and deploy the application.
+      <MyText textAlign={"center"} marginVertical={"2%"} color={"gray"} fontFamily={"Rubik-Regular"} fontSize={20}> 
+        Install the APK and run the app.
       </MyText>
       <Footer/>
     </View>
