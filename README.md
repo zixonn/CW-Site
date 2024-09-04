@@ -1,1 +1,1 @@
-https://cellwise.netlify.app/
+https://trycellwise.com
